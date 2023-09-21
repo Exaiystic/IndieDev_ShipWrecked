@@ -11,15 +11,28 @@ public class GameManager : MonoBehaviour
     private GameObject[] objectives;
     private bool gameEnded = false;
 
-    private void Update()
+    private void Start()
+    {
+        ObjectivesInit();
+    }
+
+    private void ObjectivesInit()
     {
         objectives = GameObject.FindGameObjectsWithTag("Objective");
         objectivesLeft = objectives.Length;
+        
+        UpdateObjectives();
+    }
 
-        if (objectivesLeft == 0)
-        {
-            gameWin();
-        }
+    private void UpdateObjectives()
+    {
+        if (objectivesLeft == 0) { gameWin(); }
+    }
+
+    public void ObjectivePickedUp()
+    {
+        objectivesLeft--;
+        UpdateObjectives();
     }
 
     public void gameLose()

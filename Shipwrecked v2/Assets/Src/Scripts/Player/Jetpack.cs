@@ -14,7 +14,7 @@ public class Jetpack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        thrust = Input.GetButton("Fire2");
+        thrust = Input.GetButton("Fire1");
 
         if (thrust)
         {

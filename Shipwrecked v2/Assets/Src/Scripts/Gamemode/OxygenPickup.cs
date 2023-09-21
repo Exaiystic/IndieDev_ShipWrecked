@@ -6,11 +6,7 @@ public class OxygenPickup : MonoBehaviour
 {
     public int oxygenGiven = 100;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private GameManager _gameManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

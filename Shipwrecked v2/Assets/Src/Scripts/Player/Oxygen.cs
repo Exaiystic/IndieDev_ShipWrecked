@@ -20,7 +20,7 @@ public class Oxygen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        usingJetpack = Input.GetButton("Fire2");
+        usingJetpack = Input.GetButton("Fire1");
 
         if (usingJetpack)
         {
