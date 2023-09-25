@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 7011292430074409762}
   - component: {fileID: 7011292430074409820}
   - component: {fileID: 7011292430074409767}
+  - component: {fileID: 9054821827409198055}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -207,6 +208,18 @@ MonoBehaviour:
   baseOxygen: 5000
   jetpackUsage: 5
   currentOxygen: 0
+--- !u!114 &9054821827409198055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011292430074409822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218804efe30c47a44afda48d76210410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7011292430243202918
 GameObject:
   m_ObjectHideFlags: 0

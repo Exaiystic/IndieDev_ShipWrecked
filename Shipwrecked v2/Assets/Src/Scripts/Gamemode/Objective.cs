@@ -7,7 +7,7 @@ public class Objective : MonoBehaviour, IPickups
     [SerializeField] private GameManager _gameManager;
 
     private void Awake()
-    {
+    {   
         if (_gameManager == null)
         {
             GameObject managerObject = GameObject.Find("Game Manager");
