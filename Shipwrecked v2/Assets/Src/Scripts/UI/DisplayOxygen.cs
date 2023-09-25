@@ -19,9 +19,8 @@ public class DisplayOxygen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Oxygen oxygenScript = player.GetComponent<Oxygen>();
-        playerOxygen = oxygenScript.currentOxygen;
-
+        Player playerScript = player.GetComponent<Player>();
+        playerOxygen = playerScript.ReturnCurrentOxygen();
         oxygenUI.text = playerOxygen.ToString();
     }
 }

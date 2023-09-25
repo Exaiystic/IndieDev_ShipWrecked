@@ -220,6 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218804efe30c47a44afda48d76210410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseOxygen: 5000
+  _startingOxygen: 0
+  _neutralOxygenDecayRate: 10
+  _jetpackOxygenDecayRate: 50
 --- !u!1 &7011292430243202918
 GameObject:
   m_ObjectHideFlags: 0
