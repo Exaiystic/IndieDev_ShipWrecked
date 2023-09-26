@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 7011292430074409760}
   - component: {fileID: 7011292430074409762}
   - component: {fileID: 7011292430074409820}
-  - component: {fileID: 7011292430074409767}
   - component: {fileID: 9054821827409198055}
   m_Layer: 9
   m_Name: Player
@@ -192,22 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7011292430074409760}
-  runSpeed: 40
---- !u!114 &7011292430074409767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7011292430074409822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef6119573415be4438a8d11c60d7221d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseOxygen: 5000
-  jetpackUsage: 5
-  currentOxygen: 0
+  runSpeed: 50
 --- !u!114 &9054821827409198055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +208,13 @@ MonoBehaviour:
   _startingOxygen: 0
   _neutralOxygenDecayRate: 10
   _jetpackOxygenDecayRate: 50
+  _jetpack: {fileID: 7011292430243202918}
+  _tiltAngle: -45
+  _thrustPower: 100
+  _maxThrustPower: 15
+  _rigidBody: {fileID: 7011292430074409763}
+  _characterController: {fileID: 7011292430074409760}
+  _runSpeed: 1.25
 --- !u!1 &7011292430243202918
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7011292430243202917}
   - component: {fileID: 7011292430243202923}
-  - component: {fileID: 7011292430243202916}
   m_Layer: 9
   m_Name: Jetpack
   m_TagString: Untagged
@@ -306,19 +296,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7011292430243202916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7011292430243202918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beec73bf5498d584dbbf75f5d22e8a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiltAngle: 45
 --- !u!1 &7011292430276265051
 GameObject:
   m_ObjectHideFlags: 0
