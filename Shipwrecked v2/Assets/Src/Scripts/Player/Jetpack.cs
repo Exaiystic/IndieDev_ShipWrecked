@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//DISCONTINUED - THIS FUNCTIONALITY IS NOW IN PLAYER.CS
 public class Jetpack : MonoBehaviour
 {
     public Rigidbody2D rb;
