@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float restartDelay;
     public int objectivesLeft;
     [SerializeField] private GameObject _pausedUI;
+    [SerializeField] private GameObject _playUI;
 
     private GameObject[] objectives;
     private bool gameEnded = false;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         }
 
         _pausedUI.SetActive(_bPaused);
+        _playUI.SetActive(!_bPaused);
     }
 
     private void ObjectivesInit()
