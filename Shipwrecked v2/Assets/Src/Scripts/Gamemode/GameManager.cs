@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
@@ -9,15 +10,24 @@ public class GameManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float restartDelay;
     public int objectivesLeft;
-    [SerializeField] private GameObject _pausedUI;
-    [SerializeField] private GameObject _playUI;
+    [SerializeField] private DisplayText _objectivesUI;
+
+    public static GameManager current;
 
     private GameObject[] objectives;
     private bool gameEnded = false;
     private bool _bPaused = false;
 
+    private void Awake()
+    {
+        current = this;
+    }
+    
     private void Start()
     {
+        OnPauseToggle += FreezeGame;
+        Time.timeScale = 1f;
+
         ObjectivesInit();
     }
 
@@ -31,18 +41,21 @@ public class GameManager : MonoBehaviour
 
     private void Pause()
     {
+        TogglePause();
+    }
+
+    private void FreezeGame()
+    {
         if (_bPaused)
         {
             Time.timeScale = 1f;
             _bPaused = false;
-        } else
+        }
+        else
         {
             Time.timeScale = 0f;
             _bPaused = true;
         }
-
-        _pausedUI.SetActive(_bPaused);
-        _playUI.SetActive(!_bPaused);
     }
 
     private void ObjectivesInit()
@@ -55,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     private void UpdateObjectives()
     {
+        if (_objectivesUI != null) { _objectivesUI.UpdateText(objectivesLeft.ToString()); }
+        
         if (objectivesLeft == 0) { gameWin(); }
     }
 
@@ -89,5 +104,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(restartDelay);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public event Action OnPauseToggle;
+    public void TogglePause()
+    {
+        if (OnPauseToggle != null) { OnPauseToggle();}
     }
 }

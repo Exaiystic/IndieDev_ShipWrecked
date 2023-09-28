@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _startingOxygen;
     [SerializeField] private float _neutralOxygenDecayRate = 1f;
     [SerializeField] private float _jetpackOxygenDecayRate = 5f;
+    [SerializeField] private DisplayText _oxygenUI;
 
     [Header("Settings - Jetpack")]
     [SerializeField] private GameObject _jetpack;
@@ -84,10 +85,9 @@ public class Player : MonoBehaviour
     {
         _currentOxygen -= _currentOxygenDecayRate * Time.deltaTime;
 
-        if (_currentOxygen <= 0f)
-        {
-            FindObjectOfType<GameManager>().gameLose();
-        }
+        if (_oxygenUI != null) { _oxygenUI.UpdateText(_currentOxygen.ToString()); }
+
+        if (_currentOxygen <= 0f) { FindObjectOfType<GameManager>().gameLose(); }
     }
 
     private void JetpackRotation()
