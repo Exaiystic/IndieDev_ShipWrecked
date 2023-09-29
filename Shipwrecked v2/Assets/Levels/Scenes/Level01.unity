@@ -7228,6 +7228,11 @@ PrefabInstance:
       propertyPath: _oxygenUI
       value: 
       objectReference: {fileID: 922333349}
+    - target: {fileID: 7509055739635014600, guid: 1b04607bc876a7948829ced274fe7504,
+        type: 3}
+      propertyPath: _oxygenUI
+      value: 
+      objectReference: {fileID: 922333349}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b04607bc876a7948829ced274fe7504, type: 3}
 --- !u!1001 &8525887374851502878

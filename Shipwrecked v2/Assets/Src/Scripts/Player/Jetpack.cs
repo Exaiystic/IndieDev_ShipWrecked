@@ -2,30 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//DISCONTINUED - THIS FUNCTIONALITY IS NOW IN PLAYER.CS
 public class Jetpack : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public float jetpackPower = 50f;
-    public float maxSpeed;
-    public GameObject player;
+    [Header("Settings - Thrusters")]
+    [SerializeField] private float _fuelConsumption = 50f;
+    [SerializeField] private float _thrustPower = 100f;
+    [SerializeField] private float _maxThrustPower = 15f;
 
-    private bool thrust = false;
+    [Header("Settings - Tilt")]
+    [SerializeField] private float _tiltAngle = 45f;
 
-    // Update is called once per frame
+    [Header("Settings - References")]
+    [SerializeField] private Rigidbody2D _rigidBody2D;
+    [SerializeField] private Oxygen _oxygen;
+
+    private bool _bThrusting = false;
+
     void Update()
     {
-        thrust = Input.GetButton("Fire1");
+        if (_oxygen == null) { return; }
 
-        if (thrust)
+        //Rotating the jetpack
+        gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Input.GetAxisRaw("Horizontal") * _tiltAngle));
+
+        //Using the thrusters if Fire1 is being pressed
+        if (Input.GetButton("Fire1"))
         {
-            rb.AddForce(transform.up * jetpackPower);
+            //Jetpack being used...
+            _oxygen.ChangeDecayRate(_fuelConsumption);
+            _bThrusting = true;
+        }
+        else
+        {
+            _oxygen.ResetDecayRate();
+            _bThrusting = false;
         }
     }
 
     private void FixedUpdate()
     {
-        thrust = false;
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+        if (_rigidBody2D == null) { return; }
+        
+        if (_bThrusting)
+        {
+            _rigidBody2D.AddForce(transform.up * _thrustPower);
+            _rigidBody2D.velocity = Vector2.ClampMagnitude(_rigidBody2D.velocity, _maxThrustPower);
+        }
     }
 }

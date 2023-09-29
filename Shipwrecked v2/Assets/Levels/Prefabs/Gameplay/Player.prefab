@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 7011292430074409821}
   - component: {fileID: 7011292430074409760}
   - component: {fileID: 7011292430074409762}
-  - component: {fileID: 9054821827409198055}
+  - component: {fileID: 5145963338689855516}
+  - component: {fileID: 7509055739635014600}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -177,7 +178,7 @@ CircleCollider2D:
   m_Offset: {x: -0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49585104
---- !u!114 &9054821827409198055
+--- !u!114 &5145963338689855516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,20 +187,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 7011292430074409822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 218804efe30c47a44afda48d76210410, type: 3}
+  m_Script: {fileID: 11500000, guid: 45718cfb6d072f94dadfffed086da469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _runSpeed: 1.25
+  _characterController: {fileID: 7011292430074409760}
+  _rigidbody2D: {fileID: 7011292430074409763}
+--- !u!114 &7509055739635014600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011292430074409822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef6119573415be4438a8d11c60d7221d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _baseOxygen: 5000
   _startingOxygen: 0
   _neutralOxygenDecayRate: 10
-  _jetpackOxygenDecayRate: 50
-  _jetpack: {fileID: 7011292430243202918}
-  _tiltAngle: -45
-  _thrustPower: 100
-  _maxThrustPower: 15
-  _rigidBody: {fileID: 7011292430074409763}
-  _characterController: {fileID: 7011292430074409760}
-  _runSpeed: 1.25
+  _oxygenUI: {fileID: 0}
 --- !u!1 &7011292430243202918
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7011292430243202917}
   - component: {fileID: 7011292430243202923}
+  - component: {fileID: 3580650972913561953}
   m_Layer: 9
   m_Name: Jetpack
   m_TagString: Untagged
@@ -281,6 +291,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3580650972913561953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011292430243202918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fd54a92c8b6a444866012eaf8a283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fuelConsumption: 50
+  _thrustPower: 100
+  _maxThrustPower: 15
+  _tiltAngle: -45
+  _rigidBody2D: {fileID: 7011292430074409763}
+  _oxygen: {fileID: 7509055739635014600}
 --- !u!1 &7011292430276265051
 GameObject:
   m_ObjectHideFlags: 0

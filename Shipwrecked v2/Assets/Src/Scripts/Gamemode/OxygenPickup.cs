@@ -18,7 +18,7 @@ public class OxygenPickup : MonoBehaviour
 
     private void pickup()
     {
-        FindObjectOfType<Oxygen>().gainOxygen(oxygenGiven);
+        FindObjectOfType<Oxygen>().addOxygen(oxygenGiven);
         Destroy(gameObject);
     }
 }
