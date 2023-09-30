@@ -8,7 +8,7 @@ public class GameResumer : MonoBehaviour
     {
         if (GameManager.current != null)
         {
-            GameManager.current.TogglePause();
+            EventManager.current.TogglePause();
         }
     }
 }

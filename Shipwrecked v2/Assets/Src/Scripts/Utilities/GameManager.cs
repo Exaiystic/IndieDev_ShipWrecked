@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        OnPauseToggle += FreezeGame;
+        EventManager.current.OnPauseToggle += FreezeGame;
+        EventManager.current.OnObjectivePickedUp += ObjectivePickedUp;
+
         Time.timeScale = 1f;
 
         ObjectivesInit();
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void Pause()
     {
-        TogglePause();
+        EventManager.current.TogglePause();
     }
 
     private void FreezeGame()
@@ -104,11 +106,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(restartDelay);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public event Action OnPauseToggle;
-    public void TogglePause()
-    {
-        if (OnPauseToggle != null) { OnPauseToggle();}
     }
 }

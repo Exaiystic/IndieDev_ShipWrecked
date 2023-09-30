@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ToggleUI : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class ToggleUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.current.OnPauseToggle += SwitchUI;
+        EventManager.current.OnPauseToggle += SwitchUI;
     }
 
     private void SwitchUI()
