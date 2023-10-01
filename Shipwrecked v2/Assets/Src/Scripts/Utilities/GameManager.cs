@@ -25,12 +25,7 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        EventManager.current.OnPauseToggle += FreezeGame;
-        EventManager.current.OnObjectivePickedUp += ObjectivePickedUp;
-
-        Time.timeScale = 1f;
-
-        ObjectivesInit();
+        GameManagerInit();
     }
 
     private void Update()
@@ -39,6 +34,23 @@ public class GameManager : MonoBehaviour
         {
             Pause();
         }
+    }
+
+    private void GameManagerInit()
+    {
+        //Setting up events
+        EventManager.current.OnPauseToggle += FreezeGame;
+        EventManager.current.OnObjectivePickedUp += ObjectivePickedUp;
+
+        //Resetting the time scale in the case that the level was loaded from a pause - and therefore a timescale of 0
+        Time.timeScale = 1f;
+
+        //Finding how many objectives there are in the level
+        objectives = GameObject.FindGameObjectsWithTag("Objective");
+        objectivesLeft = objectives.Length;
+
+        //Updating the objectives ui
+        UpdateObjectives();
     }
 
     private void Pause()
@@ -60,14 +72,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ObjectivesInit()
-    {
-        objectives = GameObject.FindGameObjectsWithTag("Objective");
-        objectivesLeft = objectives.Length;
-        
-        UpdateObjectives();
-    }
-
     private void UpdateObjectives()
     {
         if (_objectivesUI != null) { _objectivesUI.UpdateText(objectivesLeft.ToString()); }
@@ -87,7 +91,6 @@ public class GameManager : MonoBehaviour
         {
             gameEnded = true;
             Debug.Log("You Died");
-            StartCoroutine(Restart());
         }
     }
 
@@ -97,14 +100,6 @@ public class GameManager : MonoBehaviour
         {
             gameEnded = true;
             Debug.Log("You Win!");
-            StartCoroutine(Restart());
         }
-    }
-
-    protected virtual IEnumerator Restart()
-    {
-        yield return new WaitForSeconds(restartDelay);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
