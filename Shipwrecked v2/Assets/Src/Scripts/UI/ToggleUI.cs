@@ -8,9 +8,13 @@ public class ToggleUI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private GameObject _playUI;
     [SerializeField] private GameObject _pauseUI;
+    [SerializeField] private GameObject _winUI;
+    [SerializeField] private GameObject _loseUI;
     
     private bool _bPaused = false;
     
+    //Use an ENUM for handling which state ui to switch to
+
     // Start is called before the first frame update
     void Start()
     {
