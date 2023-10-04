@@ -7,13 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Settings - Gamemode")]
     [SerializeField] private float restartDelay;
     public int objectivesLeft;
+
+    [Header("Settings - UI")]
     [SerializeField] private DisplayText _objectivesUI;
+    [SerializeField] private DisplayText _timeUI;
+    [SerializeField] private DisplayText _gameEndTimeUI;
 
     public static GameManager current;
 
+    private float _time = 0f;
     private GameObject[] objectives;
     private bool gameEnded = false;
     private bool _bPaused = false;
@@ -30,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Timer();
+        
         if (Input.GetButtonDown("Pause"))
         {
             Pause();
@@ -51,6 +58,15 @@ public class GameManager : MonoBehaviour
 
         //Updating the objectives ui
         UpdateObjectives();
+    }
+
+    private void Timer()
+    {
+        if (_timeUI == null) { return; }
+        _time += Time.deltaTime;
+
+        _time = Mathf.Round(_time * 100) * 0.01f;
+        _timeUI.UpdateText(_time.ToString());
     }
 
     private void Pause()
@@ -100,6 +116,8 @@ public class GameManager : MonoBehaviour
         {
             gameEnded = true;
             Debug.Log("You Win!");
+
+            if (_gameEndTimeUI != null) { _gameEndTimeUI.UpdateText(_time.ToString()); }
         }
     }
 }

@@ -6,10 +6,17 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] private bool _bLoadNextLevel = false;
     [SerializeField] private string _targetSceneName;
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(_targetSceneName);
+        if (_bLoadNextLevel)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } else
+        {
+            SceneManager.LoadScene(_targetSceneName);
+        }
     }
 }
