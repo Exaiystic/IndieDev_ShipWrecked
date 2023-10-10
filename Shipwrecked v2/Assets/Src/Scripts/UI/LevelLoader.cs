@@ -5,18 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    private enum LoadAction
+    {
+        LoadNext,
+        ReloadCurrent,
+        LoadSpecified 
+    }
+    
     [Header("Settings")]
-    [SerializeField] private bool _bLoadNextLevel = false;
+    [SerializeField] private LoadAction _loadAction;
     [SerializeField] private string _targetSceneName;
 
     public void LoadLevel()
     {
-        if (_bLoadNextLevel)
+        switch (_loadAction)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        } else
-        {
-            SceneManager.LoadScene(_targetSceneName);
+            case LoadAction.LoadNext:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                break;
+            case LoadAction.ReloadCurrent:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                break;
+            case LoadAction.LoadSpecified:
+                SceneManager.LoadScene(_targetSceneName);
+                break;
         }
     }
 }

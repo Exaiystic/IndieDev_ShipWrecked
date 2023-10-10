@@ -107,6 +107,8 @@ public class GameManager : MonoBehaviour
         {
             gameEnded = true;
             Debug.Log("You Died");
+
+            EventManager.current.GameLose();
         }
     }
 
@@ -116,6 +118,8 @@ public class GameManager : MonoBehaviour
         {
             gameEnded = true;
             Debug.Log("You Win!");
+
+            EventManager.current.GameWin();
 
             if (_gameEndTimeUI != null) { _gameEndTimeUI.UpdateText(_time.ToString()); }
         }

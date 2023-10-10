@@ -23,4 +23,16 @@ public class EventManager : MonoBehaviour
     {
         if (OnObjectivePickedUp != null) { OnObjectivePickedUp(); }
     }
+
+    public event Action OnGameWin;
+    public void GameWin()
+    {
+        if (OnGameWin != null) { OnGameWin(); }
+    }
+
+    public event Action OnGameLose;
+    public void GameLose()
+    {
+        if (OnGameLose != null) { OnGameLose(); }
+    }
 }
