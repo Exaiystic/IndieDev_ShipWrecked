@@ -15,6 +15,7 @@ public class Jetpack : MonoBehaviour
     [Header("Settings - References")]
     [SerializeField] private Rigidbody2D _rigidBody2D;
     [SerializeField] private Oxygen _oxygen;
+    [SerializeField] private ParticleSystem _jetpackParticles;
 
     private bool _bThrusting = false;
 
@@ -22,6 +23,19 @@ public class Jetpack : MonoBehaviour
     {
         if (_oxygen == null) { return; }
 
+        JetpackUpdate();
+        JetpackFX();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_rigidBody2D == null) { return; }
+
+        JetpackFixedUpdate();
+    }
+
+    private void JetpackUpdate()
+    {
         //Rotating the jetpack
         gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Input.GetAxisRaw("Horizontal") * _tiltAngle));
 
@@ -39,14 +53,20 @@ public class Jetpack : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void JetpackFixedUpdate()
     {
-        if (_rigidBody2D == null) { return; }
-        
         if (_bThrusting)
         {
             _rigidBody2D.AddForce(transform.up * _thrustPower);
             _rigidBody2D.velocity = Vector2.ClampMagnitude(_rigidBody2D.velocity, _maxThrustPower);
         }
+    }
+
+    private void JetpackFX()
+    {
+        if (_jetpackParticles == null) { return; }
+
+        if (_bThrusting) _jetpackParticles.Play();
+        else _jetpackParticles.Stop();
     }
 }
