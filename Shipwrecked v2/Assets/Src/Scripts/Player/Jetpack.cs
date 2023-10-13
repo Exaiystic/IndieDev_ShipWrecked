@@ -64,9 +64,8 @@ public class Jetpack : MonoBehaviour
 
     private void JetpackFX()
     {
-        if (_jetpackParticles == null) { return; }
+        if (_jetpackParticles == null) return;
 
-        if (_bThrusting) _jetpackParticles.Play();
-        else _jetpackParticles.Stop();
+        if (_bThrusting && !_jetpackParticles.isEmitting) _jetpackParticles.Play();
     }
 }
